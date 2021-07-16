@@ -11,6 +11,6 @@ export class RoomTypesService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(environment.API_URL + '/roomTypes');
+    return this.http.get(environment.API_URL + '/roomType');
   }
 }

@@ -12,10 +12,35 @@ import { SedesService } from './services/sedes.service';
 export class AppComponent {
   title = 'hotel';
   sedes: any;
+  rooms: any;
+  filtered: any;
 
   constructor(private sedesService: SedesService, private roomTypesService: RoomTypesService, private reservationsService: ReservationsService) { }
 
   ngOnInit() {
-    this.sedesService.getAll().subscribe(({ data }) => this.sedes = data);
+    this.roomTypesService.getAll().subscribe(({ data }) => {
+      this.rooms = data;
+      this.filtered = data;
+    });
+  }
+
+  searchByName(event) {
+    let term = event.target.value;
+    this.filtered = this.rooms.filter((room: any) => room.name.toLowerCase().includes(term));
+  }
+
+  searchBySede(event) {
+    let term = event.target.value;
+    this.filtered = this.rooms.filter((room: any) => room.sede.name.toLowerCase().includes(term));
+  }
+
+  searchByAmountRooms(event) {
+    let term = parseInt(event.target.value);
+    this.filtered = this.rooms.filter((room: any) => room.amount === term);
+  }
+
+  searchByPrice(event) {
+    let term = parseInt(event.target.value);
+    this.filtered = this.rooms.filter((room: any) => room.price === term);
   }
 }

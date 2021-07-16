@@ -1,10 +1,32 @@
 <main class="container">
+  <div class="row my-3">
+    <input class="form-control" type="text" placeholder="Tipo de habitacion" aria-label="default input example"
+      (input)="searchByName($event)">
+  </div>
+
+  <div class="row my-3">
+    <input class="form-control" type="text" placeholder="Sede" aria-label="default input example"
+      (input)="searchBySede($event)">
+  </div>
+
+  <div class="row my-3">
+    <input class="form-control" type="text" placeholder="# de habitaciones" aria-label="default input example"
+      (input)="searchByAmountRooms($event)">
+  </div>
+
+  <div class="row my-3">
+    <input class="form-control" type="text" placeholder="Tarifa" aria-label="default input example"
+      (input)="searchByPrice($event)">
+  </div>
+
   <div class="row">
-    <div *ngFor="let sede of sedes" class="card" style="width: 18rem;">
+    <div *ngFor="let room of filtered" class="card mx-3" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">{{ sede.name }}</h5>
-        <p class="card-text">{{ sede.maxAmountRoom }}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">Clase de Habitación: {{ room.name }}</h5>
+        <p class="card-text">Precio Habitación: {{ room.price }}</p>
+        <p class="card-text">Cantidad de Habitaciones: {{ room.amount }}</p>
+        <p class="card-text">Sede: {{ room.sede.name }}</p>
+        <!-- <p class="card-text">{{ room.sede.available ? 'Disponible' : 'No Disponible'}}</p> -->
       </div>
     </div>
   </div>
