@@ -25,21 +25,25 @@ export class AppComponent {
   }
 
   searchByName(event) {
-    let term = event.target.value;
+    if (!event.target.value) { this.filtered = this.rooms };
+    let term = event.target.value.toLowerCase();
     this.filtered = this.rooms.filter((room: any) => room.name.toLowerCase().includes(term));
   }
 
   searchBySede(event) {
-    let term = event.target.value;
+    if (!event.target.value) { this.filtered = this.rooms };
+    let term = event.target.value.toLowerCase();
     this.filtered = this.rooms.filter((room: any) => room.sede.name.toLowerCase().includes(term));
   }
 
   searchByAmountRooms(event) {
+    if (!event.target.value) { this.filtered = this.rooms };
     let term = parseInt(event.target.value);
     this.filtered = this.rooms.filter((room: any) => room.amount === term);
   }
 
   searchByPrice(event) {
+    if (!event.target.value) { this.filtered = this.rooms };
     let term = parseInt(event.target.value);
     this.filtered = this.rooms.filter((room: any) => room.price === term);
   }
